@@ -1,0 +1,59 @@
+table DimRatingBand
+	lineageTag: c2517897-c0ea-4daf-a69b-e6eab145df94
+
+	column Band
+		dataType: string
+		lineageTag: ddfc51bf-b91f-4b56-834d-c4dfb1ae32bb
+		summarizeBy: none
+		sourceColumn: Band
+		sortByColumn: 'Band Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Min Rating'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4f42f84a-f5a4-4536-85da-583c90ae899e
+		summarizeBy: none
+		sourceColumn: Min Rating
+
+		annotation SummarizationSetBy = User
+
+	column 'Max Rating'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 06a2c349-af8f-4287-aadf-8ca935fc0e94
+		summarizeBy: none
+		sourceColumn: Max Rating
+
+		annotation SummarizationSetBy = User
+
+	column 'Band Sort'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 02f69be7-8c3f-4f6d-ad62-1ef317253b6e
+		summarizeBy: none
+		sourceColumn: Band Sort
+
+		annotation SummarizationSetBy = User
+
+	partition DimRatingBand = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Band = text, #"Min Rating" = Int64.Type, #"Max Rating" = Int64.Type, #"Band Sort" = Int64.Type], {
+				        {"< 1000", 0, 999, 1},
+				        {"1000 - <1249", 1000, 1249, 2},
+				        {"1250 - 1499", 1250, 1499, 3},
+				        {"1500 - 1749", 1500, 1749, 4},
+				        {"1750 - 1999", 1750, 1999, 5},
+				        {"2000 +", 2000, 99999, 6}
+				    })
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,55 @@
+table 'Victory Status'
+	lineageTag: afb8c522-1028-47f4-b459-e2586b252a6c
+
+	calculationGroup
+		precedence: 10
+
+		/// Show the measure for every victory status.
+		calculationItem 'All outcomes' = SELECTEDMEASURE ( )
+
+		/// Filter to games that ended in checkmate.
+		calculationItem Checkmate =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimVictoryStatus[Status] = "Checkmate"
+				)
+
+		/// Filter to games that ended in resignation.
+		calculationItem Resignation =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimVictoryStatus[Status] = "Resignation"
+				)
+
+		/// Filter to games that ended on the clock.
+		calculationItem 'Out of Time' =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimVictoryStatus[Status] = "Out of Time"
+				)
+
+		/// Filter to drawn games.
+		calculationItem Draw =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimVictoryStatus[Status] = "Draw"
+				)
+
+	column 'Victory Status'
+		dataType: string
+		lineageTag: 09b7d6ca-e4f7-413b-8bda-6c7c7f7f9b58
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: cf2f45e2-4ea0-454a-a2e4-9c2b98b0122e
+		summarizeBy: none
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

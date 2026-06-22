@@ -1,0 +1,676 @@
+table 'Measure Table'
+	lineageTag: bb1f24bb-267b-4ce9-860a-4bbeb92f3a58
+
+	/// Total number of games in the current filter context.
+	measure 'Total Games' =
+			
+			// Count the rows of the fact table (one row = one game)
+			COUNTROWS ( FactGames )
+		formatString: #,##0
+		displayFolder: 01. Volume
+		lineageTag: 344b52dc-19a3-4380-abba-4851b580e9bc
+
+	/// Number of rated (competitive) games.
+	measure 'Rated Games' =
+			
+			// Keep only the games flagged as rated ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Is Rated] = TRUE ()
+			    )
+			// ... then count them
+			VAR __Result =
+			    COUNTROWS ( __Table )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 01. Volume
+		lineageTag: 67e16121-e44e-48a4-9abe-317b70251fb6
+
+	/// Number of casual (unrated) games.
+	measure 'Casual Games' =
+			
+			// Keep only the games that are NOT rated ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Is Rated] = FALSE ()
+			    )
+			// ... then count them
+			VAR __Result =
+			    COUNTROWS ( __Table )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 01. Volume
+		lineageTag: bee0e60e-cf04-4bc7-a887-c57d70aa53e0
+
+	/// Share of games that are rated.
+	measure 'Rated %' =
+			
+			// Rated games as a share of all games
+			DIVIDE (
+			    [Rated Games],
+			    [Total Games]
+			)
+		formatString: 0.0%
+		displayFolder: 01. Volume
+		lineageTag: 416ca45e-31b3-4dbe-976b-b4e731c86195
+
+	/// Games won by White.
+	measure 'White Wins' =
+			
+			// Keep the games where White was the winner ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Winner] = "white"
+			    )
+			// ... then count them
+			VAR __Result =
+			    COUNTROWS ( __Table )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 02. Outcomes
+		lineageTag: c1c88e57-a561-41ca-bf2c-e428478c20c6
+
+	/// Games won by Black.
+	measure 'Black Wins' =
+			
+			// Keep the games where Black was the winner ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Winner] = "black"
+			    )
+			// ... then count them
+			VAR __Result =
+			    COUNTROWS ( __Table )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 02. Outcomes
+		lineageTag: be490f14-49ba-4a56-a4ce-bdb8feeedec3
+
+	/// Games drawn.
+	measure Draws =
+			
+			// Keep the games that ended in a draw ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Winner] = "draw"
+			    )
+			// ... then count them
+			VAR __Result =
+			    COUNTROWS ( __Table )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 02. Outcomes
+		lineageTag: fe787a93-7949-44b4-9fa7-983cac30587d
+
+	/// Share of games won by White.
+	measure 'White Win %' =
+			
+			// White wins as a share of all games
+			DIVIDE (
+			    [White Wins],
+			    [Total Games]
+			)
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: 84e3299f-8940-49da-9c5a-79328406c0b0
+
+	/// Share of games won by Black.
+	measure 'Black Win %' =
+			
+			// Black wins as a share of all games
+			DIVIDE (
+			    [Black Wins],
+			    [Total Games]
+			)
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: 0fe75578-f795-487d-8be3-8c288c73d7cf
+
+	/// Share of games drawn.
+	measure 'Draw %' =
+			
+			// Draws as a share of all games
+			DIVIDE (
+			    [Draws],
+			    [Total Games]
+			)
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: 6fcb25be-fbec-4112-8692-8cd4e1e32af1
+
+	/// Share of games with a decisive result (not a draw).
+	measure 'Decisive %' =
+			
+			// Keep the games that did NOT end in a draw ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Winner] <> "draw"
+			    )
+			// ... and express them as a share of all games
+			VAR __Result =
+			    DIVIDE (
+			        COUNTROWS ( __Table ),
+			        [Total Games]
+			    )
+			RETURN
+			    __Result
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: 4e2c9d86-ed1e-42c9-96b1-dee04afca174
+
+	/// Share of games ending in checkmate.
+	measure 'Checkmate %' =
+			
+			// Keep the games that ended in checkmate ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Victory Status] = "mate"
+			    )
+			// ... as a share of all games
+			VAR __Result =
+			    DIVIDE (
+			        COUNTROWS ( __Table ),
+			        [Total Games]
+			    )
+			RETURN
+			    __Result
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: 62dbf295-db6b-4305-a90a-75843d797235
+
+	/// Share of games ending in resignation.
+	measure 'Resignation %' =
+			
+			// Keep the games that ended in resignation ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Victory Status] = "resign"
+			    )
+			// ... as a share of all games
+			VAR __Result =
+			    DIVIDE (
+			        COUNTROWS ( __Table ),
+			        [Total Games]
+			    )
+			RETURN
+			    __Result
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: 57454f63-a95a-42e3-9b9e-b44739c76569
+
+	/// Share of games ending on the clock (out of time).
+	measure 'Out of Time %' =
+			
+			// Keep the games that ended on time (the clock ran out) ...
+			VAR __Table =
+			    FILTER (
+			        FactGames,
+			        FactGames[Victory Status] = "outoftime"
+			    )
+			// ... as a share of all games
+			VAR __Result =
+			    DIVIDE (
+			        COUNTROWS ( __Table ),
+			        [Total Games]
+			    )
+			RETURN
+			    __Result
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: df21ab0f-e3ff-4abb-9301-6aee1bc4b7e3
+
+	/// Win rate of the higher-rated player, among games that have a rating gap.
+	measure 'Higher-Rated Win %' =
+			
+			// Games where the two players had different ratings
+			VAR __Decided =
+			    FILTER (
+			        FactGames,
+			        FactGames[Rating Difference] <> 0
+			    )
+			// Of those, the games the higher-rated player won
+			VAR __Won =
+			    FILTER (
+			        __Decided,
+			        FactGames[Higher-Rated Won] = TRUE ()
+			    )
+			// Win rate of the favourite
+			VAR __Result =
+			    DIVIDE (
+			        COUNTROWS ( __Won ),
+			        COUNTROWS ( __Decided )
+			    )
+			RETURN
+			    __Result
+		formatString: 0.0%
+		displayFolder: 02. Outcomes
+		lineageTag: b6285de4-2011-475b-a0fe-0bec03ba43b4
+
+	/// Average of the two players' ratings, averaged across games.
+	measure 'Average Game Rating' =
+			
+			// Average, across games, of each game's mean player rating
+			AVERAGEX (
+			    FactGames,
+			    FactGames[Average Player Rating]
+			)
+		formatString: #,##0
+		displayFolder: 03. Ratings
+		lineageTag: 2122ab80-c9c6-42e7-88c3-3d096c487878
+
+	/// Average White player rating.
+	measure 'Average White Rating' =
+			
+			// Average of the White rating across games
+			AVERAGEX (
+			    FactGames,
+			    FactGames[White Rating]
+			)
+		formatString: #,##0
+		displayFolder: 03. Ratings
+		lineageTag: d95132df-e262-4ce7-87fb-7f400d8c0407
+
+	/// Average Black player rating.
+	measure 'Average Black Rating' =
+			
+			// Average of the Black rating across games
+			AVERAGEX (
+			    FactGames,
+			    FactGames[Black Rating]
+			)
+		formatString: #,##0
+		displayFolder: 03. Ratings
+		lineageTag: 4157f918-f515-4096-99e6-efa86ab0c7ac
+
+	/// Games whose White player's rating falls in the band on the axis (true per-side distribution; ignores the average-rating relationship).
+	measure 'White Games in Band' =
+			
+			// Lower / upper bound of the band on the axis
+			// (band bounds come from the DimRatingBand row on the axis)
+			VAR __Lo =
+			    MIN ( DimRatingBand[Min Rating] )
+			VAR __Hi =
+			    MAX ( DimRatingBand[Max Rating] )
+			// Count games by WHITE rating in that range. REMOVEFILTERS detaches the active
+			// DimRatingBand -> FactGames link (keyed on the AVERAGE rating), so this stays a
+			// per-side distribution rather than "average rating in band".
+			VAR __Result =
+			    CALCULATE (
+			        COUNTROWS (
+			            FILTER (
+			                FactGames,
+			                FactGames[White Rating] >= __Lo
+			                    && FactGames[White Rating] <= __Hi
+			            )
+			        ),
+			        REMOVEFILTERS ( DimRatingBand )
+			    )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 03. Ratings
+		lineageTag: ce3e96b4-3bde-4afc-b473-ec0bd24f560f
+
+	/// Games whose Black player's rating falls in the band on the axis (true per-side distribution; ignores the average-rating relationship).
+	measure 'Black Games in Band' =
+			
+			// Lower / upper bound of the band on the axis
+			// (band bounds come from the DimRatingBand row on the axis)
+			VAR __Lo =
+			    MIN ( DimRatingBand[Min Rating] )
+			VAR __Hi =
+			    MAX ( DimRatingBand[Max Rating] )
+			// Count games by BLACK rating in that range. REMOVEFILTERS detaches the active
+			// DimRatingBand -> FactGames link (keyed on the AVERAGE rating), so this stays a
+			// per-side distribution rather than "average rating in band".
+			VAR __Result =
+			    CALCULATE (
+			        COUNTROWS (
+			            FILTER (
+			                FactGames,
+			                FactGames[Black Rating] >= __Lo
+			                    && FactGames[Black Rating] <= __Hi
+			            )
+			        ),
+			        REMOVEFILTERS ( DimRatingBand )
+			    )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 03. Ratings
+		lineageTag: 810aee21-2311-4d0b-9dff-16b50c516ba3
+
+	/// Average number of turns (plies) per game.
+	measure 'Average Turns' =
+			
+			// Average of the turn count across games
+			AVERAGEX (
+			    FactGames,
+			    FactGames[Turns]
+			)
+		formatString: 0.0
+		displayFolder: 04. Game Length
+		lineageTag: ab853538-21a6-45f8-95a9-8474136652e2
+
+	/// Median number of turns per game.
+	measure 'Median Turns' =
+			
+			// Middle value of the turn count across games
+			MEDIANX (
+			    FactGames,
+			    FactGames[Turns]
+			)
+		formatString: 0
+		displayFolder: 04. Game Length
+		lineageTag: 8247c9a5-ae09-4910-9f3c-2e1d0341c18c
+
+	/// Longest game by turns.
+	measure 'Maximum Turns' =
+			
+			// Largest turn count across games
+			MAXX (
+			    FactGames,
+			    FactGames[Turns]
+			)
+		formatString: 0
+		displayFolder: 04. Game Length
+		lineageTag: c544cff1-98f5-499d-8a01-903d94bbdee7
+
+	/// Number of distinct openings played.
+	measure 'Distinct Openings' =
+			
+			// Count of unique opening names in context
+			DISTINCTCOUNT ( FactGames[Opening Name] )
+		formatString: #,##0
+		displayFolder: 05. Openings
+		lineageTag: 37cd7744-d46f-49e5-ad38-f3be019168f4
+
+	/// Name of the most-played opening in the current filter context.
+	measure 'Top Opening' =
+			
+			// Count the games of each opening
+			VAR __Summary =
+			    GROUPBY (
+			        FactGames,
+			        FactGames[Opening Name],
+			        "@Games", SUMX ( CURRENTGROUP (), 1 )
+			    )
+			// Highest game count among the openings
+			VAR __Max =
+			    MAXX ( __Summary, [@Games] )
+			// Keep the opening(s) that reach that count
+			VAR __Top =
+			    FILTER (
+			        __Summary,
+			        [@Games] = __Max
+			    )
+			// Return its name (last alphabetically if tied)
+			VAR __Result =
+			    MAXX ( __Top, FactGames[Opening Name] )
+			RETURN
+			    __Result
+		displayFolder: 05. Openings
+		lineageTag: 9a4b3abe-1872-4b22-a82a-71ab5aa8ce72
+
+	/// Number of games played with the most-played opening.
+	measure 'Top Opening Games' =
+			
+			// Count the games of each opening ...
+			VAR __Summary =
+			    GROUPBY (
+			        FactGames,
+			        FactGames[Opening Name],
+			        "@Games", SUMX ( CURRENTGROUP (), 1 )
+			    )
+			// ... and return the largest count
+			VAR __Result =
+			    MAXX ( __Summary, [@Games] )
+			RETURN
+			    __Result
+		formatString: #,##0
+		displayFolder: 05. Openings
+		lineageTag: 8e033957-24a8-4b6b-8397-2e6a3eaa5fc4
+
+	/// Most frequently used time control (increment code) in the current filter context.
+	measure 'Most Common Time Control' =
+			
+			// Count the games of each time-control code
+			VAR __Summary =
+			    GROUPBY (
+			        FactGames,
+			        FactGames[Increment Code],
+			        "@Games", SUMX ( CURRENTGROUP (), 1 )
+			    )
+			// Highest game count among the codes
+			VAR __Max =
+			    MAXX ( __Summary, [@Games] )
+			// Keep the code(s) that reach that count
+			VAR __Top =
+			    FILTER (
+			        __Summary,
+			        [@Games] = __Max
+			    )
+			// Return the code (e.g. "10+0")
+			VAR __Result =
+			    MAXX ( __Top, FactGames[Increment Code] )
+			RETURN
+			    __Result
+		displayFolder: 06. Time Controls
+		lineageTag: 00d451f8-de9f-4765-bce3-138d81160313
+
+	/// Rank of this opening family vs the others in scope, by games in the current year (1 = most). Ties are broken by family name, so ranks are always distinct (1..5).
+	measure 'Opening Rank by Year' =
+			
+			// this family, and its games in the current year
+			VAR __ThisFamily = SELECTEDVALUE ( DimOpening[Opening Family] )
+			VAR __ThisGames = [Total Games]
+			// the families in scope (top 5 via the visual's Top N filter), each with its games and name
+			VAR __Scope =
+			    ADDCOLUMNS (
+			        ALLSELECTED ( DimOpening[Opening Family] ),
+			        "@Games", [Total Games],
+			        "@Family", DimOpening[Opening Family]
+			    )
+			// families "ahead" = more games, OR the same games but an earlier name (tie-break => no ties)
+			VAR __Ahead =
+			    FILTER (
+			        __Scope,
+			        [@Games] > __ThisGames
+			            || ( [@Games] = __ThisGames && [@Family] < __ThisFamily )
+			    )
+			// ... plus 1 is this family's rank (always a distinct 1..5)
+			VAR __Result =
+			    COUNTROWS ( __Ahead ) + 1
+			RETURN
+			    __Result
+		formatString: 0
+		displayFolder: 05. Openings
+		lineageTag: b55ac263-9e12-4094-b876-9a91bbc7d6f5
+
+	/// This family's games as a share of all games played that year (point-size encoding for the bump chart).
+	measure 'Opening % of Year' =
+			
+			// the year currently on the axis
+			VAR __Year = SELECTEDVALUE ( DimDate[Year] )
+			// this family's games that year
+			VAR __FamilyGames = [Total Games]
+			// every game played that year, across all families
+			VAR __YearGames =
+			    COUNTROWS (
+			        FILTER (
+			            ALL ( FactGames ),
+			            RELATED ( DimDate[Year] ) = __Year
+			        )
+			    )
+			// share of the year
+			VAR __Result =
+			    DIVIDE ( __FamilyGames, __YearGames )
+			RETURN
+			    __Result
+		formatString: 0.0%
+		displayFolder: 05. Openings
+		lineageTag: 310aed09-a6ea-4bb4-80fe-f014ccd5aa6c
+
+	measure 'Opening Overall Rank' =
+			
+			// rank of this family by total games across the selected years (tie-free), constant across the year axis
+			VAR __ThisFamily = SELECTEDVALUE ( DimOpening[Opening Family] )
+			VAR __ThisGames = CALCULATE ( [Total Games], ALLSELECTED ( DimDate[Year] ) )
+			VAR __Scope =
+			    ADDCOLUMNS (
+			        ALLSELECTED ( DimOpening[Opening Family] ),
+			        "@Games", CALCULATE ( [Total Games], ALLSELECTED ( DimDate[Year] ) ),
+			        "@Family", DimOpening[Opening Family]
+			    )
+			VAR __Ahead =
+			    FILTER (
+			        __Scope,
+			        [@Games] > __ThisGames
+			            || ( [@Games] = __ThisGames && [@Family] < __ThisFamily )
+			    )
+			VAR __Result = COUNTROWS ( __Ahead ) + 1
+			RETURN __Result
+		formatString: 0
+		displayFolder: 05. Openings
+		lineageTag: 89d58604-1d2c-4c29-8d80-c52e6f5e54a5
+
+	measure 'RM First Year' =
+			
+			// earliest year in the current selection
+			CALCULATE ( MIN ( DimDate[Year] ), ALLSELECTED ( DimDate[Year] ) )
+		formatString: 0
+		displayFolder: 07. Rank Movement
+		lineageTag: aac85a5c-5dad-452e-992c-7df506b8a7d9
+
+	measure 'RM Last Year' =
+			
+			// latest year in the current selection
+			CALCULATE ( MAX ( DimDate[Year] ), ALLSELECTED ( DimDate[Year] ) )
+		formatString: 0
+		displayFolder: 07. Rank Movement
+		lineageTag: 6ddff08a-df99-4316-8c33-ab35aeedac4a
+
+	measure 'RM First Rank' =
+			
+			// this family's yearly rank in the first selected year
+			VAR __fy = [RM First Year]
+			RETURN CALCULATE ( [Opening Rank by Year], DimDate[Year] = __fy )
+		formatString: 0
+		displayFolder: 07. Rank Movement
+		lineageTag: 442e52c9-c5a1-4b70-b4e0-227f618f19b5
+
+	measure 'RM Last Rank' =
+			
+			// this family's yearly rank in the last selected year
+			VAR __ly = [RM Last Year]
+			RETURN CALCULATE ( [Opening Rank by Year], DimDate[Year] = __ly )
+		formatString: 0
+		displayFolder: 07. Rank Movement
+		lineageTag: 441b907c-e654-41a4-af0c-9b54f7f06bf4
+
+	measure 'RM Rank Range' =
+			
+			// spread between this family's best and worst yearly rank (0 = perfectly steady)
+			VAR __yrs = ALLSELECTED ( DimDate[Year] )
+			    VAR __r = ADDCOLUMNS ( __yrs, "@rk", CALCULATE ( [Opening Rank by Year] ) )
+			RETURN MAXX ( __r, [@rk] ) - MINX ( __r, [@rk] )
+		formatString: 0
+		displayFolder: 07. Rank Movement
+		lineageTag: 989300a3-694f-4041-bd85-568be9c4b387
+
+	measure 'Opening % White' =
+			
+			// share of this opening's games won by White (ignores the Winner slicer)
+			VAR __t = CALCULATE ( [Total Games], REMOVEFILTERS ( DimOutcome ) )
+			VAR __n = CALCULATE ( [Total Games], REMOVEFILTERS ( DimOutcome ), DimOutcome[Outcome] = "White" )
+			RETURN DIVIDE ( __n, __t )
+		formatString: 0.0%
+		displayFolder: 05. Openings
+
+	measure 'Opening % Black' =
+			
+			// share of this opening's games won by Black (ignores the Winner slicer)
+			VAR __t = CALCULATE ( [Total Games], REMOVEFILTERS ( DimOutcome ) )
+			VAR __n = CALCULATE ( [Total Games], REMOVEFILTERS ( DimOutcome ), DimOutcome[Outcome] = "Black" )
+			RETURN DIVIDE ( __n, __t )
+		formatString: 0.0%
+		displayFolder: 05. Openings
+
+	measure 'Opening % Draw' =
+			
+			// share of this opening's games won by Draw (ignores the Winner slicer)
+			VAR __t = CALCULATE ( [Total Games], REMOVEFILTERS ( DimOutcome ) )
+			VAR __n = CALCULATE ( [Total Games], REMOVEFILTERS ( DimOutcome ), DimOutcome[Outcome] = "Draw" )
+			RETURN DIVIDE ( __n, __t )
+		formatString: 0.0%
+		displayFolder: 05. Openings
+
+	measure 'Pct Resignation' =
+			
+			// share of games that ended in "Resignation" (ignores the Victory Status slicer)
+			VAR __t = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ) )
+			VAR __n = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ), DimVictoryStatus[Status] = "Resignation" )
+			RETURN DIVIDE ( __n, __t )
+		formatString: 0.0%
+		displayFolder: 08. Victory Mix
+
+	measure 'Pct Checkmate' =
+			
+			// share of games that ended in "Checkmate" (ignores the Victory Status slicer)
+			VAR __t = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ) )
+			VAR __n = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ), DimVictoryStatus[Status] = "Checkmate" )
+			RETURN DIVIDE ( __n, __t )
+		formatString: 0.0%
+		displayFolder: 08. Victory Mix
+
+	measure 'Pct Out of Time' =
+			
+			// share of games that ended in "Out of Time" (ignores the Victory Status slicer)
+			VAR __t = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ) )
+			VAR __n = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ), DimVictoryStatus[Status] = "Out of Time" )
+			RETURN DIVIDE ( __n, __t )
+		formatString: 0.0%
+		displayFolder: 08. Victory Mix
+
+	measure 'Pct Draw' =
+			
+			// share of games that ended in "Draw" (ignores the Victory Status slicer)
+			VAR __t = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ) )
+			VAR __n = CALCULATE ( [Total Games], REMOVEFILTERS ( DimVictoryStatus ), DimVictoryStatus[Status] = "Draw" )
+			RETURN DIVIDE ( __n, __t )
+		formatString: 0.0%
+		displayFolder: 08. Victory Mix
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 2ce6010d-5ea6-4467-8103-ecb7d39e6cf0
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Measure Table' = m
+		mode: import
+		queryGroup: Others
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t])
+				in
+				    Source
+

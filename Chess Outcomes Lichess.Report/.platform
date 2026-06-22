@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Chess Outcomes Lichess"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "93caf000-6d73-4a9d-8128-4c558e9968cc"
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "bumpDeneb",
+  "position": {
+    "x": 299.50738916256159,
+    "y": 132.01970443349754,
+    "z": 23000,
+    "height": 398.4729064039409,
+    "width": 938.91625615763553,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "DimDate.Year",
+              "nativeQueryRef": "Year",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimOpening"
+                    }
+                  },
+                  "Property": "Opening Family"
+                }
+              },
+              "queryRef": "DimOpening.Opening Family",
+              "nativeQueryRef": "Opening Family",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure Table"
+                    }
+                  },
+                  "Property": "Opening Rank by Year"
+                }
+              },
+              "queryRef": "Measure Table.Opening Rank by Year",
+              "nativeQueryRef": "Opening Rank by Year",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure Table"
+                    }
+                  },
+                  "Property": "Opening % of Year"
+                }
+              },
+              "queryRef": "Measure Table.Opening % of Year",
+              "nativeQueryRef": "Opening % of Year",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure Table"
+                    }
+                  },
+                  "Property": "Opening Overall Rank"
+                }
+              },
+              "queryRef": "Measure Table.Opening Overall Rank",
+              "nativeQueryRef": "Opening Overall Rank",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\r\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v6.json\",\r\n  \"autosize\": {\r\n    \"type\": \"fit\",\r\n    \"contains\": \"padding\"\r\n  },\r\n  \"padding\": {\r\n    \"left\": 10,\r\n    \"top\": 22,\r\n    \"right\": 188,\r\n    \"bottom\": 5\r\n  },\r\n  \"data\": {\r\n    \"name\": \"dataset\"\r\n  },\r\n  \"transform\": [\r\n    {\r\n      \"joinaggregate\": [\r\n        {\r\n          \"op\": \"max\",\r\n          \"field\": \"Year\",\r\n          \"as\": \"maxYr\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"encoding\": {\r\n    \"x\": {\r\n      \"field\": \"Year\",\r\n      \"type\": \"ordinal\",\r\n      \"axis\": {\r\n        \"title\": null,\r\n        \"labelAngle\": 0,\r\n        \"labelColor\": \"#8A8270\",\r\n        \"labelFont\": \"Consolas\",\r\n        \"labelFontSize\": 12,\r\n        \"domain\": false,\r\n        \"ticks\": false\r\n      }\r\n    },\r\n    \"y\": {\r\n      \"field\": \"Opening Rank by Year\",\r\n      \"type\": \"ordinal\",\r\n      \"scale\": {\r\n        \"domain\": [\r\n          1,\r\n          2,\r\n          3,\r\n          4,\r\n          5\r\n        ]\r\n      },\r\n      \"axis\": {\r\n        \"title\": null,\r\n        \"labelColor\": \"#A8956A\",\r\n        \"labelFont\": \"Consolas\",\r\n        \"labelFontSize\": 13,\r\n        \"labelExpr\": \"''#'' + datum.label\",\r\n        \"values\": [\r\n          1,\r\n          2,\r\n          3,\r\n          4,\r\n          5\r\n        ],\r\n        \"domain\": false,\r\n        \"ticks\": false,\r\n        \"grid\": true,\r\n        \"gridColor\": \"#E9DFC8\",\r\n        \"gridWidth\": 0\r\n      }\r\n    },\r\n    \"color\": {\r\n      \"field\": \"Opening Overall Rank\",\r\n      \"type\": \"ordinal\",\r\n      \"scale\": {\r\n        \"domain\": [\r\n          1,\r\n          2,\r\n          3,\r\n          4,\r\n          5\r\n        ],\r\n        \"range\": [\r\n          \"#1f1b15\",\r\n          \"#a8814a\",\r\n          \"#6e6450\",\r\n          \"#9a5a34\",\r\n          \"#b3a07a\"\r\n        ]\r\n      },\r\n      \"legend\": null\r\n    }\r\n  },\r\n  \"layer\": [\r\n    {\r\n      \"mark\": {\r\n        \"type\": \"line\",\r\n        \"strokeWidth\": 3,\r\n        \"interpolate\": \"monotone\",\r\n        \"opacity\": 0.95\r\n      },\r\n      \"encoding\": {\r\n        \"detail\": {\r\n          \"field\": \"Opening Family\",\r\n          \"type\": \"nominal\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"mark\": {\r\n        \"type\": \"point\",\r\n        \"filled\": true,\r\n        \"stroke\": \"#F9F4E9\",\r\n        \"strokeWidth\": 1.5\r\n      },\r\n      \"encoding\": {\r\n        \"size\": {\r\n          \"field\": \"Opening % of Year\",\r\n          \"type\": \"quantitative\",\r\n          \"scale\": {\r\n            \"range\": [\r\n              120,\r\n              650\r\n            ]\r\n          },\r\n          \"legend\": null\r\n        },\r\n        \"tooltip\": [\r\n          {\r\n            \"field\": \"Opening Family\",\r\n            \"type\": \"nominal\",\r\n            \"title\": \"Opening family\"\r\n          },\r\n          {\r\n            \"field\": \"Year\",\r\n            \"type\": \"ordinal\",\r\n            \"title\": \"Year\"\r\n          },\r\n          {\r\n            \"field\": \"Opening Rank by Year\",\r\n            \"type\": \"quantitative\",\r\n            \"title\": \"Rank\"\r\n          },\r\n          {\r\n            \"field\": \"Opening % of Year\",\r\n            \"type\": \"quantitative\",\r\n            \"format\": \".1%\",\r\n            \"title\": \"% of year\"\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"transform\": [\r\n        {\r\n          \"filter\": \"datum.Year == datum.maxYr\"\r\n        }\r\n      ],\r\n      \"mark\": {\r\n        \"type\": \"text\",\r\n        \"align\": \"left\",\r\n        \"dx\": 12,\r\n        \"fontSize\": 12,\r\n        \"font\": \"Georgia\",\r\n        \"fontWeight\": \"bold\"\r\n      },\r\n      \"encoding\": {\r\n        \"text\": {\r\n          \"field\": \"Opening Family\",\r\n          \"type\": \"nominal\"\r\n        },\r\n        \"color\": {\r\n          \"field\": \"Opening Overall Rank\",\r\n          \"type\": \"ordinal\",\r\n          \"scale\": {\r\n            \"domain\": [\r\n              1,\r\n              2,\r\n              3,\r\n              4,\r\n              5\r\n            ],\r\n            \"range\": [\r\n              \"#1f1b15\",\r\n              \"#a8814a\",\r\n              \"#6e6450\",\r\n              \"#9a5a34\",\r\n              \"#b3a07a\"\r\n            ]\r\n          },\r\n          \"legend\": null\r\n        }\r\n      }\r\n    }\r\n  ]\r\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"background\":\"transparent\",\"view\":{\"stroke\":\"transparent\"},\"font\":\"Georgia\"}'"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "368.4729064039409D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "906.9162561576355D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.9.1.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Deneb Bump'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bmp00",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimOpening"
+              }
+            },
+            "Property": "Opening Family"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "DimOpening",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "f",
+                        "Entity": "Measure Table",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "Opening Family"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "f"
+                              }
+                            },
+                            "Property": "Total Games"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 5
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "d",
+              "Entity": "DimOpening",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "Opening Family"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

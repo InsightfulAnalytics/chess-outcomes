@@ -1,0 +1,22 @@
+table DimGameMode
+	lineageTag: 0eb06b99-0d30-430b-92f9-f0171d8fbac7
+
+	column 'Game Mode'
+		dataType: string
+		lineageTag: ce86c9a0-4f1a-4f85-b8bf-ef6aa8ae4378
+		summarizeBy: none
+		sourceColumn: Game Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimGameMode = m
+		mode: import
+		source =
+				let
+				    Source = #"Games Source",
+				    Modes = Table.Distinct(Table.SelectColumns(Source, {"Game Mode"}))
+				in
+				    Modes
+
+	annotation PBI_ResultType = Table
+

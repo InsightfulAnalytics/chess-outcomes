@@ -1,0 +1,44 @@
+table DimOutcome
+	lineageTag: e329deab-a121-470d-9a51-27fe1053a981
+
+	column Winner
+		dataType: string
+		isHidden
+		lineageTag: e8eab13e-33b2-426b-8cfc-df17d433d4b7
+		summarizeBy: none
+		sourceColumn: Winner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Outcome
+		dataType: string
+		lineageTag: f05c88ed-0bb8-4627-afe2-5d9977382c75
+		summarizeBy: none
+		sourceColumn: Outcome
+		sortByColumn: 'Outcome Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Outcome Sort'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b2721cc4-3bc2-4f4f-aa25-110a65b9aa9f
+		summarizeBy: none
+		sourceColumn: Outcome Sort
+
+		annotation SummarizationSetBy = User
+
+	partition DimOutcome = m
+		mode: import
+		source =
+				let
+				    Source = #"Games Source",
+				    Winners = Table.Distinct(Table.SelectColumns(Source, {"Winner"})),
+				    Outcome = Table.AddColumn(Winners, "Outcome", each if [Winner] = "white" then "White" else if [Winner] = "black" then "Black" else "Draw", type text),
+				    Sort = Table.AddColumn(Outcome, "Outcome Sort", each if [Winner] = "white" then 1 else if [Winner] = "black" then 2 else 3, Int64.Type)
+				in
+				    Sort
+
+	annotation PBI_ResultType = Table
+

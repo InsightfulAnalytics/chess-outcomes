@@ -1,0 +1,41 @@
+table 'Game Mode'
+	lineageTag: b2d3a082-a32e-4531-a2dd-4885faf47f44
+
+	calculationGroup
+		precedence: 20
+
+		/// Show the measure for every game mode.
+		calculationItem 'All modes' = SELECTEDMEASURE ( )
+
+		/// Filter to casual games.
+		calculationItem Casual =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimGameMode[Game Mode] = "Casual"
+				)
+
+		/// Filter to rated games.
+		calculationItem Rated =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimGameMode[Game Mode] = "Rated"
+				)
+
+	column 'Game Mode'
+		dataType: string
+		lineageTag: 3e62739b-a4e4-4fc7-a86f-044d0d708bc2
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 6b1b1273-1af8-40bd-b064-4b1674c44017
+		summarizeBy: none
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

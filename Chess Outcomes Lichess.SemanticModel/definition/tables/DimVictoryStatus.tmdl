@@ -1,0 +1,44 @@
+table DimVictoryStatus
+	lineageTag: 1592080c-f060-4649-b6be-b1fbe176b29e
+
+	column 'Victory Status'
+		dataType: string
+		isHidden
+		lineageTag: 760b77f5-2e80-44f5-97f4-c7dd653c428a
+		summarizeBy: none
+		sourceColumn: Victory Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: f32383fe-9b50-4376-a9a3-7429552974f0
+		summarizeBy: none
+		sourceColumn: Status
+		sortByColumn: 'Status Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Sort'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f5f0ae57-8290-40ee-973c-bce3cd1db192
+		summarizeBy: none
+		sourceColumn: Status Sort
+
+		annotation SummarizationSetBy = User
+
+	partition DimVictoryStatus = m
+		mode: import
+		source =
+				let
+				    Source = #"Games Source",
+				    Statuses = Table.Distinct(Table.SelectColumns(Source, {"Victory Status"})),
+				    Status = Table.AddColumn(Statuses, "Status", each if [Victory Status] = "mate" then "Checkmate" else if [Victory Status] = "resign" then "Resignation" else if [Victory Status] = "outoftime" then "Out of Time" else "Draw", type text),
+				    Sort = Table.AddColumn(Status, "Status Sort", each if [Victory Status] = "mate" then 1 else if [Victory Status] = "resign" then 2 else if [Victory Status] = "outoftime" then 3 else 4, Int64.Type)
+				in
+				    Sort
+
+	annotation PBI_ResultType = Table
+

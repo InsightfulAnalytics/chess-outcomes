@@ -1,0 +1,49 @@
+table 'Ranking Band'
+	lineageTag: acade994-5801-4783-8945-e0e1e84ab2af
+
+	calculationGroup
+		precedence: 40
+
+		/// Show the measure unfiltered (every rating).
+		calculationItem 'All ratings' = SELECTEDMEASURE ( )
+
+		/// Filter the measure to games whose average player rating is under 1400.
+		calculationItem 'Under 1400' =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    FactGames[Average Player Rating] < 1400
+				)
+
+		/// Filter the measure to games whose average player rating is 1400-1799.
+		calculationItem '1400 - 1799' =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    FactGames[Average Player Rating] >= 1400
+				        && FactGames[Average Player Rating] < 1800
+				)
+
+		/// Filter the measure to games whose average player rating is 1800 and up.
+		calculationItem '1800 and up' =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    FactGames[Average Player Rating] >= 1800
+				)
+
+	column 'Ranking Band'
+		dataType: string
+		lineageTag: 7ca7393d-51ba-4f46-a291-5f67d31b5b08
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 2c606a13-1ea9-44e7-b5c2-18995870c544
+		summarizeBy: none
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

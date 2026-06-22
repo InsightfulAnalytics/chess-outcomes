@@ -1,0 +1,66 @@
+table DimTimeControl
+	lineageTag: 8d609777-cbb3-4ae6-aaf3-6f6b04a90366
+
+	column 'Increment Code'
+		dataType: string
+		lineageTag: 3281f288-9cf7-48de-b52c-32e9e2b77874
+		summarizeBy: none
+		sourceColumn: Increment Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Base Minutes'
+		dataType: int64
+		formatString: 0
+		lineageTag: fb0d1a14-bc92-4033-bb6b-06603682cf19
+		summarizeBy: none
+		sourceColumn: Base Minutes
+
+		annotation SummarizationSetBy = User
+
+	column 'Increment Seconds'
+		dataType: int64
+		formatString: 0
+		lineageTag: 91f13396-587a-405d-9804-a79543c705aa
+		summarizeBy: none
+		sourceColumn: Increment Seconds
+
+		annotation SummarizationSetBy = User
+
+	column 'Speed Category'
+		dataType: string
+		lineageTag: c971454d-bf3e-4a68-af17-83ba733ede59
+		summarizeBy: none
+		sourceColumn: Speed Category
+		sortByColumn: 'Speed Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Speed Sort'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d4d46034-4002-4a94-8fb4-3e77405e7bc1
+		summarizeBy: none
+		sourceColumn: Speed Sort
+
+		annotation SummarizationSetBy = User
+
+	partition DimTimeControl = m
+		mode: import
+		source =
+				let
+				    Source = #"Games Source",
+				    Codes = Table.Distinct(Table.SelectColumns(Source, {"Increment Code"})),
+				    Parts = Table.AddColumn(Codes, "Parts", each Text.Split([Increment Code], "+")),
+				    Base = Table.AddColumn(Parts, "Base Minutes", each Number.From([Parts]{0}), Int64.Type),
+				    Inc = Table.AddColumn(Base, "Increment Seconds", each if List.Count([Parts]) > 1 then Number.From([Parts]{1}) else 0, Int64.Type),
+				    Est = Table.AddColumn(Inc, "Est Seconds", each [Base Minutes] * 60 + [Increment Seconds] * 40, Int64.Type),
+				    Speed = Table.AddColumn(Est, "Speed Category", each if [Est Seconds] < 180 then "Bullet" else if [Est Seconds] < 480 then "Blitz" else if [Est Seconds] < 1500 then "Rapid" else "Classical", type text),
+				    SpeedSort = Table.AddColumn(Speed, "Speed Sort", each if [Speed Category] = "Bullet" then 1 else if [Speed Category] = "Blitz" then 2 else if [Speed Category] = "Rapid" then 3 else 4, Int64.Type),
+				    Clean = Table.RemoveColumns(SpeedSort, {"Parts", "Est Seconds"})
+				in
+				    Clean
+
+	annotation PBI_ResultType = Table
+

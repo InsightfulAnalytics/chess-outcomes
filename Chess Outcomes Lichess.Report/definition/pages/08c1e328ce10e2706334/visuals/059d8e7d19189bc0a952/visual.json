@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "059d8e7d19189bc0a952",
+  "position": {
+    "x": 1546.9938650306747,
+    "y": 363.19018404907973,
+    "z": 3000,
+    "height": 335.7055214723926,
+    "width": 358.282208588957,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimRatingBand"
+                    }
+                  },
+                  "Property": "Band"
+                }
+              },
+              "queryRef": "DimRatingBand.Band",
+              "nativeQueryRef": "Band"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure Table"
+                    }
+                  },
+                  "Property": "Total Games"
+                }
+              },
+              "queryRef": "Measure Table.Total Games",
+              "nativeQueryRef": "Total Games"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,40 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Others
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Measure Table","Year_Variable","TodayDate","FunctionDateTable","DimDate","FactGames","DimOutcome","DimVictoryStatus","DimOpening","DimTimeControl","DimGameMode","DimRatingBand","Winner","Game Mode","Victory Status","Games Source"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Measure Table'
+ref table DimDate
+ref table DateTableTemplate_6fcc7b30-92d8-44d1-bdd8-f25e408b6030
+ref table LocalDateTable_9e1a65a5-5862-4e0f-b4b1-4ba3e15949ea
+ref table LocalDateTable_d071c40e-7283-4892-947d-c509e81806a9
+ref table LocalDateTable_0d27d4e1-fdf9-4089-adca-acb57684af49
+ref table LocalDateTable_900a19e9-30a8-4c85-b6af-59b47c2f6ef7
+ref table FactGames
+ref table DimOutcome
+ref table DimVictoryStatus
+ref table DimOpening
+ref table DimTimeControl
+ref table DimGameMode
+ref table DimRatingBand
+ref table 'Ranking Band'
+ref table Winner
+ref table 'Game Mode'
+ref table 'Victory Status'
+
+ref cultureInfo en-GB
+

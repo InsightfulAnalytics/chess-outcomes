@@ -1,0 +1,14 @@
+# Power BI Desktop local cache & user settings (never commit)
+.pbi/
+*.abf
+cache.abf
+localSettings.json
+
+# Claude Code local lock
+.claude/scheduled_tasks.lock
+
+# Scratch / build working directory (intermediate scripts & PNGs)
+tmp/
+
+# Redundant data copy
+games - Copy.csv

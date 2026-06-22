@@ -1,0 +1,109 @@
+{
+  "name": "Editorial Ivory",
+  "dataColors": [
+    "#1f1b15",
+    "#a8814a",
+    "#6e6450",
+    "#9a5a34",
+    "#b3a07a",
+    "#c2b388",
+    "#a8956a",
+    "#8a8270",
+    "#2b2620",
+    "#ddd1b6"
+  ],
+  "foreground": "#1f1b15",
+  "foregroundNeutralSecondary": "#5a5346",
+  "foregroundNeutralTertiary": "#a8956a",
+  "background": "#f4efe4",
+  "backgroundLight": "#f9f4e9",
+  "backgroundNeutral": "#ece3cf",
+  "tableAccent": "#a8814a",
+  "good": "#6e7a3a",
+  "neutral": "#a8814a",
+  "bad": "#9a5a34",
+  "maximum": "#1f1b15",
+  "center": "#a8814a",
+  "minimum": "#e3dac6",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Georgia",
+      "color": "#1f1b15"
+    },
+    "title": {
+      "fontFace": "Georgia",
+      "color": "#1f1b15"
+    },
+    "header": {
+      "fontFace": "Georgia",
+      "color": "#1f1b15"
+    },
+    "label": {
+      "fontFace": "Consolas",
+      "color": "#5a5346"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ],
+        "visualTooltip": [
+          {
+            "titleFontColor": {
+              "solid": {
+                "color": "#1f1b15"
+              }
+            },
+            "valueFontColor": {
+              "solid": {
+                "color": "#1f1b15"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#f9f4e9"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#f4efe4"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#e7e5df"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

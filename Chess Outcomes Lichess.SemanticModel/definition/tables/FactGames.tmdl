@@ -1,0 +1,180 @@
+table FactGames
+	lineageTag: 91fb94e0-7278-499d-b918-51ecab50f0d3
+
+	column Id
+		dataType: string
+		isHidden
+		lineageTag: e5db8a6a-d118-4115-9f10-d1f31f4dc579
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created Date'
+		dataType: dateTime
+		isHidden
+		formatString: Short Date
+		lineageTag: 41e1c5da-4173-41fa-81a6-fd59fa31bbe8
+		summarizeBy: none
+		sourceColumn: Created Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Winner
+		dataType: string
+		isHidden
+		lineageTag: 62ef23e9-fc55-4793-87a5-0c5e41017907
+		summarizeBy: none
+		sourceColumn: Winner
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Victory Status'
+		dataType: string
+		isHidden
+		lineageTag: 9c10b576-ef95-4884-a377-41edd2962cf2
+		summarizeBy: none
+		sourceColumn: Victory Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opening Name'
+		dataType: string
+		isHidden
+		lineageTag: 8baa6620-c69f-48dd-968d-1b6ccb2b8a1d
+		summarizeBy: none
+		sourceColumn: Opening Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Increment Code'
+		dataType: string
+		isHidden
+		lineageTag: 9c14731d-a13b-4fef-96e1-6eb23bb746ba
+		summarizeBy: none
+		sourceColumn: Increment Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Game Mode'
+		dataType: string
+		isHidden
+		lineageTag: 501c484f-a7d6-45a4-8fb2-1280190fb8e7
+		summarizeBy: none
+		sourceColumn: Game Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Rated'
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ecee8cc6-eddf-41dd-b0db-ae000c18f307
+		summarizeBy: none
+		sourceColumn: Is Rated
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turns
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 78cb432a-a5f8-4fe0-aca9-2d98872c0ae5
+		summarizeBy: none
+		sourceColumn: Turns
+
+		annotation SummarizationSetBy = User
+
+	column 'Turn Band'
+		dataType: string
+		lineageTag: b0080a2b-7a62-41b9-b87b-13ec29d180a9
+		summarizeBy: none
+		sourceColumn: Turn Band
+		sortByColumn: 'Turn Band Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Turn Band Sort'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1e2cfc1a-cbdd-4888-ad44-35e63c16d9c1
+		summarizeBy: none
+		sourceColumn: Turn Band Sort
+
+		annotation SummarizationSetBy = User
+
+	column 'White Rating'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 4bdf268e-9a72-46ae-8f86-0d4212c6b887
+		summarizeBy: none
+		sourceColumn: White Rating
+
+		annotation SummarizationSetBy = User
+
+	column 'Black Rating'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: e052b88f-ff5a-4414-bd92-c497864c54d4
+		summarizeBy: none
+		sourceColumn: Black Rating
+
+		annotation SummarizationSetBy = User
+
+	column 'Average Player Rating'
+		dataType: double
+		formatString: #,##0
+		lineageTag: aaf2317b-7563-466d-84a3-85268baaa664
+		summarizeBy: none
+		sourceColumn: Average Player Rating
+
+		annotation SummarizationSetBy = User
+
+	column 'Rating Difference'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: e49b6975-7737-48e7-b8b8-d83afdd262ee
+		summarizeBy: none
+		sourceColumn: Rating Difference
+
+		annotation SummarizationSetBy = User
+
+	column 'Opening Ply'
+		dataType: int64
+		formatString: 0
+		lineageTag: d054d935-dc0a-4ff4-8ad0-0e87cdd5570f
+		summarizeBy: none
+		sourceColumn: Opening Ply
+
+		annotation SummarizationSetBy = User
+
+	column 'Higher-Rated Won'
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 28b19d65-ec21-4876-936f-3b3227277d54
+		summarizeBy: none
+		sourceColumn: Higher-Rated Won
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rating Band'
+		dataType: string
+		isHidden
+		lineageTag: 91080ecb-8104-47e3-927e-c5a52abce8c1
+		summarizeBy: none
+		sourceColumn: Rating Band
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactGames = m
+		mode: import
+		source =
+				let
+				    Source = #"Games Source",
+				    Fact = Table.RemoveColumns(Source, {"Opening ECO"})
+				in
+				    Fact
+
+	annotation PBI_ResultType = Table
+

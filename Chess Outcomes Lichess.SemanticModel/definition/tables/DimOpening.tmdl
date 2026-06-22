@@ -1,0 +1,49 @@
+table DimOpening
+	lineageTag: 227d9e3f-d936-4ae5-a4ef-cac6438f2534
+
+	column 'Opening Name'
+		dataType: string
+		lineageTag: 7990ce42-f6ca-464f-acf1-4534ad7b9e98
+		summarizeBy: none
+		sourceColumn: Opening Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opening ECO'
+		dataType: string
+		lineageTag: d5492501-464f-420c-8f80-5fcb87664cfa
+		summarizeBy: none
+		sourceColumn: Opening ECO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ECO Category'
+		dataType: string
+		lineageTag: a0950315-b6d4-4fb4-bf95-1eff33dff283
+		summarizeBy: none
+		sourceColumn: ECO Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opening Family'
+		dataType: string
+		lineageTag: 32f8cc8b-d4bb-4cd6-a7d3-bf983d6d445f
+		summarizeBy: none
+		sourceColumn: Opening Family
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimOpening = m
+		mode: import
+		source =
+				let
+				    Source = #"Games Source",
+				    Cols = Table.SelectColumns(Source, {"Opening Name", "Opening ECO"}),
+				    UniqueName = Table.Distinct(Cols, {"Opening Name"}),
+				    ECOCat = Table.AddColumn(UniqueName, "ECO Category", each Text.Start([Opening ECO], 1), type text),
+				    Family = Table.AddColumn(ECOCat, "Opening Family", each let p = Text.PositionOf([Opening Name], ":") in if p = -1 then [Opening Name] else Text.Trim(Text.Start([Opening Name], p)), type text)
+				in
+				    Family
+
+	annotation PBI_ResultType = Table
+

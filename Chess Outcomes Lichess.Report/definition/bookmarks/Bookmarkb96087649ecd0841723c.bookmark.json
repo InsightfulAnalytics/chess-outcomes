@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Hide Slicer Panel",
+  "name": "Bookmarkb96087649ecd0841723c",
+  "options": {
+    "targetVisualNames": [
+      "930330cd850b4abbb2ab",
+      "e1de3f2404946e2b4969",
+      "f17db195e9e39d636969",
+      "65bb8d570d114c70c5cd",
+      "c94b85d1bba3801c31cd",
+      "bbd8d7cf3120b80395a2",
+      "ad00b08000c2142bc073",
+      "1779c79fec02d65d7bc2",
+      "314e6b4070bc947506d7",
+      "e32694ee82d7d533a80a",
+      "0cfec4b04b5c0b130050",
+      "e9dfcaf09571e0d83edb",
+      "f1dbb79ae675180c0d53",
+      "2f98aa22229e70bbe534"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSection",
+    "sections": {
+      "ReportSection": {
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "930330cd850b4abbb2ab": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

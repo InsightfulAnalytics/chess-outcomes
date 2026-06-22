@@ -1,0 +1,48 @@
+relationship aa9facb7-13eb-4015-9ec4-d14c350acfd1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.Date
+	toColumn: LocalDateTable_9e1a65a5-5862-4e0f-b4b1-4ba3e15949ea.Date
+
+relationship d6249894-53a8-473b-94ca-a6e5fb44f003
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.MonthEnding
+	toColumn: LocalDateTable_d071c40e-7283-4892-947d-c509e81806a9.Date
+
+relationship c5b395a2-d9b8-4296-8ed2-a420a1baea38
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.WeekEnding
+	toColumn: LocalDateTable_0d27d4e1-fdf9-4089-adca-acb57684af49.Date
+
+relationship f87f5680-eb1d-427e-9fa5-ddd69f7362bc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.'Start Of Month'
+	toColumn: LocalDateTable_900a19e9-30a8-4c85-b6af-59b47c2f6ef7.Date
+
+relationship 586592b9-53a1-43f9-b592-1ab635a6f6ff
+	fromColumn: FactGames.'Created Date'
+	toColumn: DimDate.Date
+
+relationship 927c93ff-a97c-4c8e-94c6-d2af5b395c30
+	fromColumn: FactGames.Winner
+	toColumn: DimOutcome.Winner
+
+relationship 909d658b-c2b6-4a76-a888-91601cbcec06
+	fromColumn: FactGames.'Victory Status'
+	toColumn: DimVictoryStatus.'Victory Status'
+
+relationship 3044bd88-eac2-4f36-a61f-b44d423faf19
+	fromColumn: FactGames.'Opening Name'
+	toColumn: DimOpening.'Opening Name'
+
+relationship d32a038d-e28c-4e79-83e7-db55c295bf47
+	fromColumn: FactGames.'Increment Code'
+	toColumn: DimTimeControl.'Increment Code'
+
+relationship 8e7795de-d47d-4cb3-8360-5189e5b6bdc7
+	fromColumn: FactGames.'Game Mode'
+	toColumn: DimGameMode.'Game Mode'
+
+relationship bda659ec-0c60-4759-8b27-4c565f3183be
+	fromColumn: FactGames.'Rating Band'
+	toColumn: DimRatingBand.Band
+

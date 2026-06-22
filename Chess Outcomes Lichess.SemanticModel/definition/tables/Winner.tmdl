@@ -1,0 +1,48 @@
+table Winner
+	lineageTag: 14cbb7c0-2f52-4e46-aa89-e6f1a2c9314b
+
+	calculationGroup
+		precedence: 30
+
+		/// Show the measure for every winner.
+		calculationItem 'All winners' = SELECTEDMEASURE ( )
+
+		/// Filter to games won by White.
+		calculationItem White =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimOutcome[Outcome] = "White"
+				)
+
+		/// Filter to games won by Black.
+		calculationItem Black =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimOutcome[Outcome] = "Black"
+				)
+
+		/// Filter to drawn games.
+		calculationItem Draw =
+				CALCULATE (
+				    SELECTEDMEASURE (),
+				    DimOutcome[Outcome] = "Draw"
+				)
+
+	column Winner
+		dataType: string
+		lineageTag: 59d75116-6918-4dc3-8fed-d2500489e8c9
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 68e6b730-01bf-4307-8347-55835da0ca7e
+		summarizeBy: none
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
