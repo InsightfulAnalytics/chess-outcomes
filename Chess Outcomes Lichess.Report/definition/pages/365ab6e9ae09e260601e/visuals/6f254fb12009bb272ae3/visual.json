@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "ratedSlicer",
+  "name": "6f254fb12009bb272ae3",
   "position": {
     "x": 20,
-    "y": 312,
+    "y": 40,
+    "z": 18000,
+    "height": 128,
     "width": 222,
-    "height": 102,
-    "z": 20000,
-    "tabOrder": 20000
+    "tabOrder": 17000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Game Mode"
+                      "Entity": "Ranking Band"
                     }
                   },
-                  "Property": "Game Mode"
+                  "Property": "Ranking Band"
                 }
               },
-              "queryRef": "Game Mode.Game Mode",
-              "nativeQueryRef": "Game Mode",
+              "queryRef": "Ranking Band.Ranking Band",
+              "nativeQueryRef": "Ranking Band",
               "active": true
             }
           ]
@@ -68,8 +68,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "g",
-                    "Entity": "Game Mode",
+                    "Name": "r",
+                    "Entity": "Ranking Band",
                     "Type": 0
                   }
                 ],
@@ -82,10 +82,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "g"
+                                  "Source": "r"
                                 }
                               },
-                              "Property": "Game Mode"
+                              "Property": "Ranking Band"
                             }
                           }
                         ],
@@ -93,7 +93,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'All modes'"
+                                "Value": "'All ratings'"
                               }
                             }
                           ]
@@ -214,7 +214,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'GAME MODE'"
+                  "Value": "'RANKING BAND'"
                 }
               }
             }
@@ -293,7 +293,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Slicer · Game Mode'"
+                  "Value": "'Slicer · Ranking Band'"
                 }
               }
             },

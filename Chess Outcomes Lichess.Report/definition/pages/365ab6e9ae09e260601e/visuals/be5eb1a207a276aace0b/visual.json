@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "winnerSlicer",
+  "name": "be5eb1a207a276aace0b",
   "position": {
-    "x": 20.123152709359609,
-    "y": 262.89655172413791,
-    "z": 19000,
-    "height": 128.15270935960592,
-    "width": 221.35467980295567,
-    "tabOrder": 19000
+    "x": 20,
+    "y": 422,
+    "z": 21000,
+    "height": 156,
+    "width": 222,
+    "tabOrder": 21000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Winner"
+                      "Entity": "Victory Status"
                     }
                   },
-                  "Property": "Winner"
+                  "Property": "Victory Status"
                 }
               },
-              "queryRef": "Winner.Winner",
-              "nativeQueryRef": "Winner",
+              "queryRef": "Victory Status.Victory Status",
+              "nativeQueryRef": "Victory Status",
               "active": true
             }
           ]
@@ -68,8 +68,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "w",
-                    "Entity": "Winner",
+                    "Name": "v",
+                    "Entity": "Victory Status",
                     "Type": 0
                   }
                 ],
@@ -82,10 +82,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "w"
+                                  "Source": "v"
                                 }
                               },
-                              "Property": "Winner"
+                              "Property": "Victory Status"
                             }
                           }
                         ],
@@ -93,7 +93,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'All winners'"
+                                "Value": "'All outcomes'"
                               }
                             }
                           ]
@@ -214,7 +214,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'WINNER'"
+                  "Value": "'VICTORY STATUS'"
                 }
               }
             }
@@ -249,7 +249,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -293,7 +293,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Slicer · Winner'"
+                  "Value": "'Slicer · Victory Status'"
                 }
               }
             },

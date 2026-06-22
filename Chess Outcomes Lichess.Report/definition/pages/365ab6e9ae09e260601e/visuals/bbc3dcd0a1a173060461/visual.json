@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "mainEyebrow",
+  "name": "bbc3dcd0a1a173060461",
   "position": {
     "x": 284,
     "y": 13,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "KAGGLE DATASET - LICHESS",
+                    "value": "KAGGLE",
                     "textStyle": {
                       "fontFamily": "Consolas",
                       "fontSize": "9pt",

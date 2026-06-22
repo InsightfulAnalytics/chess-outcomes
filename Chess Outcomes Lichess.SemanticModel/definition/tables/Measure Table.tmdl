@@ -599,6 +599,7 @@ table 'Measure Table'
 			RETURN DIVIDE ( __n, __t )
 		formatString: 0.0%
 		displayFolder: 05. Openings
+		lineageTag: 4c3b0c49-b0c9-41c9-84be-cbadf7c9dc4f
 
 	measure 'Opening % Black' =
 			
@@ -608,6 +609,7 @@ table 'Measure Table'
 			RETURN DIVIDE ( __n, __t )
 		formatString: 0.0%
 		displayFolder: 05. Openings
+		lineageTag: 1bca71cb-4873-4987-a349-0a816a6f078d
 
 	measure 'Opening % Draw' =
 			
@@ -617,6 +619,7 @@ table 'Measure Table'
 			RETURN DIVIDE ( __n, __t )
 		formatString: 0.0%
 		displayFolder: 05. Openings
+		lineageTag: 747ff9e6-2e62-40f1-bbc7-8811675ad8a8
 
 	measure 'Pct Resignation' =
 			
@@ -626,6 +629,7 @@ table 'Measure Table'
 			RETURN DIVIDE ( __n, __t )
 		formatString: 0.0%
 		displayFolder: 08. Victory Mix
+		lineageTag: 168465e7-67c2-4528-8c5f-cd40badbc0c2
 
 	measure 'Pct Checkmate' =
 			
@@ -635,6 +639,7 @@ table 'Measure Table'
 			RETURN DIVIDE ( __n, __t )
 		formatString: 0.0%
 		displayFolder: 08. Victory Mix
+		lineageTag: bf2e87a8-6ed9-47d4-8d04-7f332888b431
 
 	measure 'Pct Out of Time' =
 			
@@ -644,6 +649,7 @@ table 'Measure Table'
 			RETURN DIVIDE ( __n, __t )
 		formatString: 0.0%
 		displayFolder: 08. Victory Mix
+		lineageTag: 88712e71-d20d-440d-9610-b6ef5495b8ad
 
 	measure 'Pct Draw' =
 			
@@ -653,6 +659,19 @@ table 'Measure Table'
 			RETURN DIVIDE ( __n, __t )
 		formatString: 0.0%
 		displayFolder: 08. Victory Mix
+		lineageTag: aeb14ae5-40d9-444d-8fa3-1c1af466ea15
+
+	/// This opening's games as a share of the five charted openings' combined games.
+	measure 'Opening % of Top 5' =
+			
+			// numerator: this opening across all selected years
+			VAR __This = CALCULATE ( [Total Games], ALLSELECTED ( DimDate[Year] ) )
+			// denominator: the openings visible in the bump (top 5), across all selected years
+			VAR __Top5 = CALCULATE ( [Total Games], ALLSELECTED ( DimOpening[Opening Family] ), ALLSELECTED ( DimDate[Year] ) )
+			RETURN DIVIDE ( __This, __Top5 )
+		formatString: 0%
+		displayFolder: 05. Openings
+		lineageTag: 7c0e9a51-4d2b-4a6c-9f10-2b6c5a9e4d77
 
 	column Column1
 		dataType: string

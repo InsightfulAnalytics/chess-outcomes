@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "70359eef0808e73306ec",
+  "name": "3a4840030d569ec6774e",
   "position": {
-    "x": 19.704433497536947,
-    "y": 104.43349753694582,
-    "z": 1000,
-    "height": 107.38916256157637,
-    "width": 222.66009852216752,
-    "tabOrder": 1000
+    "x": 20,
+    "y": 176,
+    "z": 19000,
+    "height": 128,
+    "width": 222,
+    "tabOrder": 19000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Ranking Band"
+                      "Entity": "Winner"
                     }
                   },
-                  "Property": "Ranking Band"
+                  "Property": "Winner"
                 }
               },
-              "queryRef": "Ranking Band.Ranking Band",
-              "nativeQueryRef": "Ranking Band",
+              "queryRef": "Winner.Winner",
+              "nativeQueryRef": "Winner",
               "active": true
             }
           ]
@@ -68,8 +68,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "r",
-                    "Entity": "Ranking Band",
+                    "Name": "w",
+                    "Entity": "Winner",
                     "Type": 0
                   }
                 ],
@@ -82,10 +82,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "r"
+                                  "Source": "w"
                                 }
                               },
-                              "Property": "Ranking Band"
+                              "Property": "Winner"
                             }
                           }
                         ],
@@ -93,7 +93,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'1800 and up'"
+                                "Value": "'All winners'"
                               }
                             }
                           ]
@@ -148,7 +148,7 @@
             "textSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "11D"
                 }
               }
             },
@@ -162,7 +162,7 @@
             "padding": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "3D"
                 }
               }
             }
@@ -175,7 +175,46 @@
             "show": {
               "expr": {
                 "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Consolas'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#a8956a'"
+                    }
+                  }
+                }
+              }
+            },
+            "showRestatement": {
+              "expr": {
+                "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'WINNER'"
                 }
               }
             }
@@ -186,6 +225,13 @@
         {
           "properties": {
             "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "strictSingleSelect": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -231,6 +277,26 @@
       "border": [
         {
           "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Slicer · Winner'"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {

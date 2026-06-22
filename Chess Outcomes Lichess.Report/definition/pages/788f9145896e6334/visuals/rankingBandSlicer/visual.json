@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "rankingBandSlicer",
   "position": {
-    "x": 20,
-    "y": 40,
-    "width": 222,
-    "height": 128,
+    "x": 20.123152709359609,
+    "y": 103.79310344827587,
     "z": 18000,
+    "height": 128.15270935960592,
+    "width": 221.35467980295567,
     "tabOrder": 17000
   },
   "visual": {

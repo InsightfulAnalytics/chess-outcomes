@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "mainEyebrow",
+  "name": "296bbeb0ac244a04a3b5",
   "position": {
-    "x": 284,
-    "y": 13,
-    "z": 7000,
-    "height": 18,
-    "width": 760,
-    "tabOrder": 6000
+    "x": 281.77339901477836,
+    "y": 42.364532019704434,
+    "z": 8000,
+    "height": 53.201970443349758,
+    "width": 797.04433497536957,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "KAGGLE DATASET - LICHESS",
+                    "value": "Checkmate - The Chess Dataset",
                     "textStyle": {
-                      "fontFamily": "Consolas",
-                      "fontSize": "9pt",
-                      "color": "#a8956a"
+                      "fontWeight": "bold",
+                      "fontFamily": "Georgia",
+                      "fontSize": "28pt",
+                      "color": "#1f1b15"
                     }
                   }
                 ]
@@ -47,7 +48,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Header · Eyebrow'"
+                  "Value": "'Header · Title'"
                 }
               }
             }

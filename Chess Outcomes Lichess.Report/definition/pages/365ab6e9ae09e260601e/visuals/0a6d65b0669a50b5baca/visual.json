@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "mainEyebrow",
+  "name": "0a6d65b0669a50b5baca",
   "position": {
-    "x": 284,
-    "y": 13,
-    "z": 7000,
-    "height": 18,
-    "width": 760,
-    "tabOrder": 6000
+    "x": 880,
+    "y": 560,
+    "z": 16000,
+    "height": 20,
+    "width": 320,
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,12 @@
               {
                 "textRuns": [
                   {
-                    "value": "KAGGLE DATASET - LICHESS",
+                    "value": "How games end",
                     "textStyle": {
-                      "fontFamily": "Consolas",
-                      "fontSize": "9pt",
-                      "color": "#a8956a"
+                      "fontWeight": "bold",
+                      "fontFamily": "Georgia",
+                      "fontSize": "12pt",
+                      "color": "#1f1b15"
                     }
                   }
                 ]
@@ -47,7 +48,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Header · Eyebrow'"
+                  "Value": "'How Games End · Title'"
                 }
               }
             }

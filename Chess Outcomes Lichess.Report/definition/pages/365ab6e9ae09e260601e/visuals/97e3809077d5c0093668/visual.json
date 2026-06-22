@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "mainEyebrow",
+  "name": "97e3809077d5c0093668",
   "position": {
-    "x": 284,
-    "y": 13,
-    "z": 7000,
-    "height": 18,
-    "width": 760,
-    "tabOrder": 6000
+    "x": 18,
+    "y": 0,
+    "z": 5000,
+    "height": 44,
+    "width": 42,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "KAGGLE DATASET - LICHESS",
+                    "value": "♞",
                     "textStyle": {
-                      "fontFamily": "Consolas",
-                      "fontSize": "9pt",
-                      "color": "#a8956a"
+                      "fontFamily": "Segoe UI Symbol",
+                      "fontSize": "22pt",
+                      "color": "#1f1b15"
                     }
                   }
                 ]
@@ -47,7 +47,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Header · Eyebrow'"
+                  "Value": "'Logo · Knight'"
                 }
               }
             }

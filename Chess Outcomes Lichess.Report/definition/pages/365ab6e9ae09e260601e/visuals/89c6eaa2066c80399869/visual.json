@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "bumpChart",
+  "name": "89c6eaa2066c80399869",
   "position": {
-    "x": 27.484662576687114,
-    "y": 70.674846625766861,
-    "z": 0,
-    "height": 612.51533742331287,
-    "width": 981.59509202453978,
+    "x": 299.50738916256159,
+    "y": 132.01970443349754,
+    "z": 23000,
+    "height": 398.4729064039409,
+    "width": 938.91625615763553,
     "tabOrder": 0
   },
   "visual": {
@@ -74,6 +74,21 @@
               "queryRef": "Measure Table.Opening % of Year",
               "nativeQueryRef": "Opening % of Year",
               "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measure Table"
+                    }
+                  },
+                  "Property": "Opening Overall Rank"
+                }
+              },
+              "queryRef": "Measure Table.Opening Overall Rank",
+              "nativeQueryRef": "Opening Overall Rank",
+              "active": true
             }
           ]
         }
@@ -93,14 +108,14 @@
             "jsonSpec": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"$schema\": \"https://vega.github.io/schema/vega-lite/v6.json\",\"autosize\": {\"type\": \"fit\",\"contains\": \"padding\"},\"padding\": {\"left\": 8,\"top\": 26,\"right\": 175,\"bottom\": 8},\"data\": {\"name\": \"dataset\"},\"transform\": [{\"joinaggregate\": [{\"op\": \"max\",\"field\": \"Year\",\"as\": \"maxYr\"}]}],\"encoding\": {\"x\": {\"field\": \"Year\",\"type\": \"ordinal\",\"axis\": {\"title\": null,\"labelAngle\": 0,\"labelColor\": \"#C8CDD7\",\"labelFontSize\": 14,\"domain\": false,\"ticks\": false}},\"y\": {\"field\": \"Opening Rank by Year\",\"type\": \"ordinal\",\"scale\": {\"domain\": [1,2,3,4,5]},\"axis\": {\"title\": \"Rank\",\"titleColor\": \"#C8CDD7\",\"labelColor\": \"#C8CDD7\",\"labelFontSize\": 13,\"values\": [1,2,3,4,5],\"domain\": false,\"ticks\": false,\"grid\": false}},\"color\": {\"field\": \"Opening Family\",\"type\": \"nominal\",\"scale\": {\"scheme\": \"pbiColorNominal\"},\"legend\": null}},\"layer\": [{\"mark\": {\"type\": \"line\",\"strokeWidth\": 4,\"interpolate\": \"monotone\",\"opacity\": 0.9}},{\"mark\": {\"type\": \"point\",\"filled\": true,\"stroke\": \"#252C40\",\"strokeWidth\": 1.5},\"encoding\": {\"size\": {\"field\": \"Opening % of Year\",\"type\": \"quantitative\",\"scale\": {\"range\": [130,800]},\"legend\": null},\"tooltip\": [{\"field\": \"Opening Family\",\"type\": \"nominal\",\"title\": \"Opening family\"},{\"field\": \"Year\",\"type\": \"ordinal\",\"title\": \"Year\"},{\"field\": \"Opening Rank by Year\",\"type\": \"quantitative\",\"title\": \"Rank\"},{\"field\": \"Opening % of Year\",\"type\": \"quantitative\",\"format\": \".1%\",\"title\": \"% of year\"}]}},{\"transform\": [{\"filter\": \"datum.Year == datum.maxYr\"}],\"mark\": {\"type\": \"text\",\"align\": \"left\",\"dx\": 14,\"fontSize\": 13,\"fontWeight\": \"bold\"},\"encoding\": {\"text\": {\"field\": \"Opening Family\",\"type\": \"nominal\"}}}]}'"
+                  "Value": "'{\r\n  \"$schema\": \"https://vega.github.io/schema/vega-lite/v6.json\",\r\n  \"autosize\": {\r\n    \"type\": \"fit\",\r\n    \"contains\": \"padding\"\r\n  },\r\n  \"padding\": {\r\n    \"left\": 10,\r\n    \"top\": 22,\r\n    \"right\": 188,\r\n    \"bottom\": 5\r\n  },\r\n  \"data\": {\r\n    \"name\": \"dataset\"\r\n  },\r\n  \"transform\": [\r\n    {\r\n      \"joinaggregate\": [\r\n        {\r\n          \"op\": \"max\",\r\n          \"field\": \"Year\",\r\n          \"as\": \"maxYr\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"encoding\": {\r\n    \"x\": {\r\n      \"field\": \"Year\",\r\n      \"type\": \"ordinal\",\r\n      \"axis\": {\r\n        \"title\": null,\r\n        \"labelAngle\": 0,\r\n        \"labelColor\": \"#8A8270\",\r\n        \"labelFont\": \"Consolas\",\r\n        \"labelFontSize\": 12,\r\n        \"domain\": false,\r\n        \"ticks\": false\r\n      }\r\n    },\r\n    \"y\": {\r\n      \"field\": \"Opening Rank by Year\",\r\n      \"type\": \"ordinal\",\r\n      \"scale\": {\r\n        \"domain\": [\r\n          1,\r\n          2,\r\n          3,\r\n          4,\r\n          5\r\n        ]\r\n      },\r\n      \"axis\": {\r\n        \"title\": null,\r\n        \"labelColor\": \"#A8956A\",\r\n        \"labelFont\": \"Consolas\",\r\n        \"labelFontSize\": 13,\r\n        \"labelExpr\": \"''#'' + datum.label\",\r\n        \"values\": [\r\n          1,\r\n          2,\r\n          3,\r\n          4,\r\n          5\r\n        ],\r\n        \"domain\": false,\r\n        \"ticks\": false,\r\n        \"grid\": true,\r\n        \"gridColor\": \"#E9DFC8\",\r\n        \"gridWidth\": 0\r\n      }\r\n    },\r\n    \"color\": {\r\n      \"field\": \"Opening Overall Rank\",\r\n      \"type\": \"ordinal\",\r\n      \"scale\": {\r\n        \"domain\": [\r\n          1,\r\n          2,\r\n          3,\r\n          4,\r\n          5\r\n        ],\r\n        \"range\": [\r\n          \"#1f1b15\",\r\n          \"#a8814a\",\r\n          \"#6e6450\",\r\n          \"#9a5a34\",\r\n          \"#b3a07a\"\r\n        ]\r\n      },\r\n      \"legend\": null\r\n    }\r\n  },\r\n  \"layer\": [\r\n    {\r\n      \"mark\": {\r\n        \"type\": \"line\",\r\n        \"strokeWidth\": 3,\r\n        \"interpolate\": \"monotone\",\r\n        \"opacity\": 0.95\r\n      },\r\n      \"encoding\": {\r\n        \"detail\": {\r\n          \"field\": \"Opening Family\",\r\n          \"type\": \"nominal\"\r\n        }\r\n      }\r\n    },\r\n    {\r\n      \"mark\": {\r\n        \"type\": \"point\",\r\n        \"filled\": true,\r\n        \"stroke\": \"#F9F4E9\",\r\n        \"strokeWidth\": 1.5\r\n      },\r\n      \"encoding\": {\r\n        \"size\": {\r\n          \"field\": \"Opening % of Year\",\r\n          \"type\": \"quantitative\",\r\n          \"scale\": {\r\n            \"range\": [\r\n              120,\r\n              650\r\n            ]\r\n          },\r\n          \"legend\": null\r\n        },\r\n        \"tooltip\": [\r\n          {\r\n            \"field\": \"Opening Family\",\r\n            \"type\": \"nominal\",\r\n            \"title\": \"Opening family\"\r\n          },\r\n          {\r\n            \"field\": \"Year\",\r\n            \"type\": \"ordinal\",\r\n            \"title\": \"Year\"\r\n          },\r\n          {\r\n            \"field\": \"Opening Rank by Year\",\r\n            \"type\": \"quantitative\",\r\n            \"title\": \"Rank\"\r\n          },\r\n          {\r\n            \"field\": \"Opening % of Year\",\r\n            \"type\": \"quantitative\",\r\n            \"format\": \".1%\",\r\n            \"title\": \"% of year\"\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"transform\": [\r\n        {\r\n          \"filter\": \"datum.Year == datum.maxYr\"\r\n        }\r\n      ],\r\n      \"mark\": {\r\n        \"type\": \"text\",\r\n        \"align\": \"left\",\r\n        \"dx\": 12,\r\n        \"fontSize\": 12,\r\n        \"font\": \"Georgia\",\r\n        \"fontWeight\": \"bold\"\r\n      },\r\n      \"encoding\": {\r\n        \"text\": {\r\n          \"field\": \"Opening Family\",\r\n          \"type\": \"nominal\"\r\n        },\r\n        \"color\": {\r\n          \"field\": \"Opening Overall Rank\",\r\n          \"type\": \"ordinal\",\r\n          \"scale\": {\r\n            \"domain\": [\r\n              1,\r\n              2,\r\n              3,\r\n              4,\r\n              5\r\n            ],\r\n            \"range\": [\r\n              \"#1f1b15\",\r\n              \"#a8814a\",\r\n              \"#6e6450\",\r\n              \"#9a5a34\",\r\n              \"#b3a07a\"\r\n            ]\r\n          },\r\n          \"legend\": null\r\n        }\r\n      }\r\n    }\r\n  ]\r\n}'"
                 }
               }
             },
             "jsonConfig": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"background\": \"transparent\",\"view\": {\"stroke\": \"transparent\"},\"font\": \"Segoe UI\"}'"
+                  "Value": "'{\"background\":\"transparent\",\"view\":{\"stroke\":\"transparent\"},\"font\":\"Georgia\"}'"
                 }
               }
             },
@@ -134,14 +149,14 @@
             "viewportHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "554.1153378047826D"
+                  "Value": "368.4729064039409D"
                 }
               }
             },
             "viewportWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "949.5950920245398D"
+                  "Value": "906.9162561576355D"
                 }
               }
             }
@@ -169,14 +184,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top 5 opening families by rank (2014-2017)'"
+                  "Value": "'Deneb Bump'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportPage'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'f0786ddaebe0b630'"
                 }
               }
             }
@@ -189,7 +231,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e5a187a67a68e007ef11",
+        "name": "bmp00",
         "field": {
           "Column": {
             "Expression": {

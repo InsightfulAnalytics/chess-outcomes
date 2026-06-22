@@ -3,7 +3,23 @@ cultureInfo en-GB
 	linguisticMetadata =
 			{
 			  "Version": "1.0.0",
-			  "Language": "en-US"
+			  "Language": "en-US",
+			  "Entities": {
+			    "measure_table.total_games": {
+			      "Binding": {
+			        "ConceptualEntity": "Measure Table",
+			        "ConceptualProperty": "Total Games"
+			      },
+			      "State": "Generated"
+			    },
+			    "measure_table.opening_overall_rank": {
+			      "Binding": {
+			        "ConceptualEntity": "Measure Table",
+			        "ConceptualProperty": "Opening Overall Rank"
+			      },
+			      "State": "Generated"
+			    }
+			  }
 			}
 		contentType: json
 

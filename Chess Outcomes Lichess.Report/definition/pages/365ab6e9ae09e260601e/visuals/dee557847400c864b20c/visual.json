@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "mainEyebrow",
+  "name": "dee557847400c864b20c",
   "position": {
-    "x": 284,
-    "y": 13,
-    "z": 7000,
-    "height": 18,
-    "width": 760,
-    "tabOrder": 6000
+    "x": 1100.4926108374386,
+    "y": 42,
+    "z": 9000,
+    "height": 45.320197044334982,
+    "width": 149.7536945812808,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,14 +19,16 @@
               {
                 "textRuns": [
                   {
-                    "value": "KAGGLE DATASET - LICHESS",
+                    "value": "20,058",
                     "textStyle": {
-                      "fontFamily": "Consolas",
-                      "fontSize": "9pt",
-                      "color": "#a8956a"
+                      "fontWeight": "bold",
+                      "fontFamily": "Georgia",
+                      "fontSize": "26pt",
+                      "color": "#1f1b15"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "right"
               }
             ]
           }
@@ -47,7 +49,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Header · Eyebrow'"
+                  "Value": "'Header · Stat 5'"
                 }
               }
             }

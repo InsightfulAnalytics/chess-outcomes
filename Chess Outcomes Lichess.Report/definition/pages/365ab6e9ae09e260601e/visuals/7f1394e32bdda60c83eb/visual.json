@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "mainEyebrow",
+  "name": "7f1394e32bdda60c83eb",
   "position": {
-    "x": 284,
-    "y": 13,
-    "z": 7000,
+    "x": 1040,
+    "y": 82,
+    "z": 10000,
     "height": 18,
-    "width": 760,
-    "tabOrder": 6000
+    "width": 210,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,14 +19,15 @@
               {
                 "textRuns": [
                   {
-                    "value": "KAGGLE DATASET - LICHESS",
+                    "value": "GAMES ANALYSED",
                     "textStyle": {
                       "fontFamily": "Consolas",
-                      "fontSize": "9pt",
+                      "fontSize": "8pt",
                       "color": "#a8956a"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "right"
               }
             ]
           }
@@ -47,7 +48,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Header · Eyebrow'"
+                  "Value": "'Header · Stat Label'"
                 }
               }
             }
