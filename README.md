@@ -4,7 +4,9 @@ An editorial-style **Power BI** report exploring **20,058 Lichess games**: which
 
 Built entirely **as code** in the [PBIP](https://learn.microsoft.com/power-bi/developer/projects/projects-overview) format — semantic model in TMDL, report in PBIR, and the signature visuals authored in **Deneb (Vega)** rather than off-the-shelf charts.
 
-![Checkmate — The Chess Dataset report](docs/report.png)
+![Checkmate — The Chess Dataset report, with the in-chart hover card open on the Sicilian Defense](docs/report-with-tooltip.png)
+
+<sub>Hovering an opening reveals an in-chart card — outcome donut, total games, share of the top-5, and overall rank.</sub>
 
 ---
 
