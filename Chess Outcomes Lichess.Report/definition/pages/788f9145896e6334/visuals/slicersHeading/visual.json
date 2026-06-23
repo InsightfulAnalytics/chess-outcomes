@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "howEndEyebrow",
+  "name": "slicersHeading",
   "position": {
-    "x": 1060.1724137931035,
-    "y": 562,
-    "z": 17000,
-    "height": 25.418719211822662,
-    "width": 169.45812807881774,
-    "tabOrder": 27000
+    "x": 20,
+    "y": 8,
+    "z": 20000,
+    "height": 30,
+    "width": 200,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "textbox",
@@ -19,15 +19,21 @@
               {
                 "textRuns": [
                   {
-                    "value": "VICTORY STATUS",
+                    "value": "♛  ",
+                    "textStyle": {
+                      "fontSize": "17pt",
+                      "color": "#1f1b15"
+                    }
+                  },
+                  {
+                    "value": "SLICERS",
                     "textStyle": {
                       "fontFamily": "Consolas",
-                      "fontSize": "8pt",
+                      "fontSize": "10pt",
                       "color": "#a8956a"
                     }
                   }
-                ],
-                "horizontalTextAlignment": "right"
+                ]
               }
             ]
           }
@@ -42,13 +48,6 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'How Games End · Eyebrow'"
                 }
               }
             }

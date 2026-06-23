@@ -1,5 +1,19 @@
 # pbir CLI learnings (Chess Outcomes)
 
+- **Converting a `slicer` to the native Button slicer (`advancedSlicerVisual`)**: no pbir convert
+  command — edit visual.json `visual.visualType` directly; the `Values` data role + `general.filter`
+  (default selection) + `selection.singleSelect` carry over unchanged. Style with state-keyed property
+  sets `{"properties":{...},"selector":{"id":"default"}}` and `{"id":"selected"}`: `fillCustom.fillColor`
+  (selected `#2b2620`, default = rail color to blend), `value.fontColor`/`bold` (selected light), 
+  `shapeCustomRectangle.rectangleRoundedCurve` (radius), `outline.show=false`. Group label = container
+  `title` (show + text + Consolas), not the old slicer `header` object.
+- **Button-slicer vertical fit is controlled by `layout.columnCount=1` + `layout.rowCount=<#items>`,
+  NOT by `cellPadding`/`fixedHeight`/`autoGrid`** (those had no visible effect on row height; buttons
+  stayed ~42-57px and scrolled). Setting `rowCount` to the item count makes every item show and sizes
+  the buttons to fill the visual height — so control button height via the visual's own height once
+  rowCount is set. A ♛/eyebrow heading is a plain `textbox` (`general.paragraphs[].textRuns[]` with
+  per-run `textStyle` fontSize/color/fontFamily) authored as a new visual folder.
+
 - **`pbir add filter <Table> <Field> -r "<...>/Some.Visual"` adds a REPORT-level filter, NOT a
   visual-level one** (the `-r` target is the report regardless of the visual path). A stray TopN top-1
   added this way silently filtered EVERY visual to one opening (the bump showed a single line). It does

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "mainEyebrow",
   "position": {
-    "x": 284,
-    "y": 13,
+    "x": 283.8423645320197,
+    "y": 20,
     "z": 7000,
-    "height": 18,
-    "width": 760,
+    "height": 22.241379310344829,
+    "width": 195.935960591133,
     "tabOrder": 6000
   },
   "visual": {
