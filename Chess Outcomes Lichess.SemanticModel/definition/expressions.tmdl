@@ -139,7 +139,7 @@ expression FunctionDateTable = ```
 
 expression 'Games Source' =
 		let
-		    Source = Csv.Document(File.Contents("b:\VS Code Files\PBI Projects\Chess Outcomes\games.csv"), [Delimiter = ",", Columns = 16, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+		    Source = Csv.Document(File.Contents("w:\pbi_projects\chess_outcomes\games.csv"), [Delimiter = ",", Columns = 16, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
 		    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 		    Typed = Table.TransformColumnTypes(Promoted, {
 		        {"id", type text},
